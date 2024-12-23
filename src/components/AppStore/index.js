@@ -295,6 +295,7 @@ const appsList = [
 class AppStore extends Component {
   state = {
     searchValue: '',
+    category: '',
   }
 
   onChangeSearch = event => {
@@ -302,7 +303,22 @@ class AppStore extends Component {
     this.setState({searchValue: event.target.value})
   }
 
+  onClickTab = category => {
+    const {searchValue} = this.state
+    this.setState({category})
+  }
+
   render() {
+    const {searchValue, category} = this.state
+    console.log(`Category: ${category}`)
+    const filteredAppList = appsList.filter(each =>
+      each.appName.toLowerCase().includes(searchValue.toLowerCase()),
+    )
+    const categoryAppList = filteredAppList.filter(each =>
+      each.category.includes(category),
+    )
+
+    console.log(categoryAppList)
     return (
       <div className="bg-container">
         <h1 className="heading">App Store</h1>
@@ -320,11 +336,15 @@ class AppStore extends Component {
         </div>
         <ul className="tabs">
           {tabsList.map(each => (
-            <TabItem key={each.tabId} item={each} />
+            <TabItem
+              key={each.tabId}
+              onClickCategory={this.onClickTab}
+              item={each}
+            />
           ))}
         </ul>
         <ul className="apps">
-          {appsList.map(each => (
+          {categoryAppList.map(each => (
             <AppItem item={each} />
           ))}
         </ul>
