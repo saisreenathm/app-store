@@ -304,7 +304,6 @@ class AppStore extends Component {
   }
 
   onClickTab = category => {
-    const {searchValue} = this.state
     this.setState({category})
   }
 
@@ -339,6 +338,7 @@ class AppStore extends Component {
             <TabItem
               key={each.tabId}
               onClickCategory={this.onClickTab}
+              currentCategory={category}
               item={each}
             />
           ))}
