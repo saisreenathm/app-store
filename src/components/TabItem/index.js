@@ -6,7 +6,6 @@ const TabItem = props => {
   const {displayText, tabId} = item
   console.log(`${currentCategory} ${tabId}`)
   const onClickButton = () => {
-    console.log('Hi in Tab Component')
     onClickCategory(tabId)
   }
   const className = `button${currentCategory === tabId ? '-selected' : ''}`
