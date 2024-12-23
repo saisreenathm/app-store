@@ -310,11 +310,12 @@ class AppStore extends Component {
   render() {
     const {searchValue, category} = this.state
     console.log(`Category: ${category}`)
-    const filteredAppList = appsList.filter(each =>
-      each.appName.toLowerCase().includes(searchValue.toLowerCase()),
-    )
-    const categoryAppList = filteredAppList.filter(each =>
+
+    const categoryAppList = appsList.filter(each =>
       each.category.includes(category),
+    )
+    const filteredAppList = categoryAppList.filter(each =>
+      each.appName.toLowerCase().includes(searchValue.toLowerCase()),
     )
 
     console.log(categoryAppList)
@@ -344,8 +345,8 @@ class AppStore extends Component {
           ))}
         </ul>
         <ul className="apps">
-          {categoryAppList.map(each => (
-            <AppItem item={each} />
+          {filteredAppList.map(each => (
+            <AppItem key={each.appId} item={each} />
           ))}
         </ul>
       </div>

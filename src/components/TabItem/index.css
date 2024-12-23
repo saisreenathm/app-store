@@ -11,7 +11,7 @@
   background-color: transparent;
   border-bottom: 2px solid #dfe2e5;
 }
-.selected-button {
+.button-selected {
   color: #2563eb;
   font-size: larger;
   padding-bottom: 5px;

@@ -1,20 +1,19 @@
 import './index.css'
 
 const TabItem = props => {
-  const {item, onClickCategory, category} = props
+  const {item, onClickCategory, currentCategory} = props
 
   const {displayText, tabId} = item
-  console.log(category + '  ' + tabId)
+  console.log(`${currentCategory} ${tabId}`)
   const onClickButton = () => {
+    console.log('Hi in Tab Component')
     onClickCategory(tabId)
   }
+  const className = `button${currentCategory === tabId ? '-selected' : ''}`
+
   return (
     <li className="list-item">
-      <button
-        className={category === tabId ? 'selected-button' : 'button'}
-        type="button"
-        onClick={onClickButton}
-      >
+      <button className={className} type="button" onClick={onClickButton}>
         {displayText}
       </button>
     </li>
